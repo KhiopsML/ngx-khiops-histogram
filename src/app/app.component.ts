@@ -36,34 +36,40 @@ export class AppComponent {
   datas: HistogramData[] = [
     {
       frequency: 3262,
-      partition: [-10, -1],
-      value: 0.022262260622688126,
-      logValue: -1.652430737300943,
+      partition: [-30, -2],
+      value: 0.022,
+      logValue: -1.652,
     },
     {
       frequency: 9796,
-      partition: [-1, 1],
-      value: 0.02507063592809467,
-      logValue: -1.6008346498248047,
+      partition: [-2, -0.1],
+      value: 0.025,
+      logValue: -1.6,
     },
     {
       frequency: 11723,
-      partition: [1, 8.5],
-      value: 0.026668759583054657,
-      logValue: -1.5739971837387918,
+      partition: [-0.1, 0],
+      value: 0.066,
+      logValue: -1.18,
     },
-    // {
-    //   frequency: 4793,
-    //   partition: [38.5, 42.5],
-    //   value: 0.02453318864911347,
-    //   logValue: -1.6102460016217122,
-    // },
-    // {
-    //   frequency: 5445,
-    //   partition: [42.5, 47.5],
-    //   value: 0.022296384259448833,
-    //   logValue: -1.6517655595297627,
-    // },
+    {
+      frequency: 4793,
+      partition: [0, 42.5],
+      value: 0.024,
+      logValue: -1.61,
+    },
+    {
+      frequency: 5445,
+      partition: [42.5, 47.5],
+      value: 0.05,
+      logValue: -1.3,
+    },
+    {
+      frequency: 545,
+      partition: [47.5, 400],
+      value: 0.022,
+      logValue: -1.65,
+    },
   ];
 
   selectedItemChanged(event: number): void {

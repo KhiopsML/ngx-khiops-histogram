@@ -34,6 +34,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/ngx-khiops-histogram/",
               "budgets": [
                 {
                   "type": "initial",
