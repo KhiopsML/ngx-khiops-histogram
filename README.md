@@ -1,27 +1,70 @@
-# KhiopsHistogram
+# ngx-khiops-histogram
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.4.
+```ngx-khiops-histogram``` is an Angular Typescript component that allows you to display histograms of numerical values in linear and logarithmic form.
+This component is maintained and is integrated into the [Khiops Visualization](https://github.com/KhiopsML/khiops-visualization) tool.
 
-## Development server
+## Why ?
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+If the linear representation in x and y is classic, as is the logarithmic representation in y, the logarithmic representation in x poses a problem for values ​​around zero and for negative interval values.
 
-## Code scaffolding
+### Negative logarithmic values
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Negative logarithmic interval values ​​cannot be represented since Math.log10(-x) = NaN.
+In order to represent these values, ​​we will take their absolute values ​​which we will display on the negative axis of x: from -1 to -inf
+[schema]
 
-## Build
+### Values around 0
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Values ​​around [-1; 1] are infinite so the representation should be infinitely large. To avoid this, we then arbitrarily assign a width of 1/10 of the width of the graph.
+[schema]
 
-## Running unit tests
+If 0 is a bound, the arbitrary histogram in the middle is divided into two parts to represent the value <0 and the value >0
+[schema]
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Installation
 
-## Running end-to-end tests
+```yarn add ngx-khiops-histogram```
+or
+```npm install ngx-khiops-histogram```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Usage
 
-## Further help
+Add wanted package to NgModule imports:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```
+import { NgxKhiopsHistogramModule } from 'ngx-khiops-histogram';
+
+@NgModule({
+...
+imports: [NgxKhiopsHistogramModule,...]
+...
+})
+```
+
+Add component to your page:
+```
+<ngx-khiops-histogram
+    [datas]="datas"
+    [datasLabels]="datasLabels"
+    [options]="options"
+    [graphOptionX]="graphOptionX"
+    [graphOptionY]="graphOptionY"
+    (selectedItemChanged)="selectedItemChanged($event)">
+</ngx-khiops-histogram>
+```
+
+### Params
+
+| Property | Type | Default | Description |
+|--|--|--|--|
+| graphOptionX | HistogramType | HistogramType.XLIN | X axis scale |
+| graphOptionY| HistogramType | HistogramType.YLIN| Y axis scale | 
+| options| HistogramOptions| {<br>selectedBarColor: 'black',<br>gridColor: '#aaa',<br>xPadding: 40,<br>yPadding: 50,<br>minBarHeight: 4<br>} | Optional styles options |
+| datas| HistogramData| {<br>frequency: number,<br>partition: [number, number],<br>value: number,<br>logValue: number<br>} | Datas inputs |
+
+
+### Outputs
+
+| Property | Event type | Description|
+|--|--|--|
+| selectedItemChanged | EventEmitter<Number> | Emit new index value when a bar is clicked|
