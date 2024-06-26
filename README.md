@@ -75,3 +75,14 @@ Add component to your page:
 | Property | Event type | Description|
 |--|--|--|
 | selectedItemChanged | EventEmitter(Number) | Emit new index value when a bar is clicked|
+
+## License
+This software is distributed under the BSD 3-Clause-clear License, the text of which is available at
+https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the [LICENSE.md](./LICENSE.md) for more
+details.
+
+## Credits
+The ngx-khiops-histogram library is currently developed at [Orange Innovation][o-innov] by the Khiops
+Team: khiops.team@orange.com.
+
+[o-innov]: https://hellofuture.orange.com/en/
