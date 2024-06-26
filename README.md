@@ -30,7 +30,9 @@ If 0 is a bound, the arbitrary histogram in the middle is divided into two parts
 ## Installation
 
 ```yarn add ngx-khiops-histogram```
+
 or
+
 ```npm install ngx-khiops-histogram```
 
 ## Usage
@@ -73,4 +75,4 @@ Add component to your page:
 
 | Property | Event type | Description|
 |--|--|--|
-| selectedItemChanged | EventEmitter<Number> | Emit new index value when a bar is clicked|
+| selectedItemChanged | EventEmitter(Number) | Emit new index value when a bar is clicked|
