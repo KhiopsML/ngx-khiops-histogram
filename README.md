@@ -12,19 +12,18 @@ If the linear representation in x and y is classic, as is the logarithmic repres
 Negative logarithmic interval values ​​cannot be represented since Math.log10(-x) = NaN.
 In order to represent these values, ​​we will take their absolute values ​​which we will display on the negative axis of x: from -1 to -inf
 
-![image](https://github.com/KhiopsML/ngx-khiops-histogram/assets/13203455/fb348366-ad2f-46d3-b10e-737088f1dcb0)
-
+![image](https://github.com/KhiopsML/ngx-khiops-histogram/assets/13203455/11dfd7c4-3ecf-4a71-9439-5c498de78a23)
 
 ### Values around 0
 
 Values ​​around [-1; 1] are infinite so the representation should be infinitely large. To avoid this, we then arbitrarily assign a width of 1/10 of the width of the graph.
 
-![image](https://github.com/KhiopsML/ngx-khiops-histogram/assets/13203455/5ab6c25d-4ebd-42b1-8b72-d272163ef32a)
-
+![image](https://github.com/KhiopsML/ngx-khiops-histogram/assets/13203455/ef64c77f-a640-46cf-8743-2024d0be5e90)
 
 If 0 is a bound, the arbitrary histogram in the middle is divided into two parts to represent the value <0 and the value >0
 
-![image](https://github.com/KhiopsML/ngx-khiops-histogram/assets/13203455/eca1e3f3-9647-475b-abfd-6f03c5237982)
+
+![image](https://github.com/KhiopsML/ngx-khiops-histogram/assets/13203455/ea69a9ba-19bc-4052-bd11-1a31df0c190f)
 
 
 ## Installation
