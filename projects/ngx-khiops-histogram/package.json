@@ -1,6 +1,20 @@
 {
   "name": "ngx-khiops-histogram",
   "version": "NPM_PUBLISH_VERSION",
+  "license": "BSD-3-Clause-Clear",
+  "author": {
+    "name": "Orange",
+    "email": "khiops.team@orange.com"
+  },
+  "description": "The Logarithmic histogram library used into Khiops Visualization",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KhiopsML/ngx-khiops-histogram.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KhiopsML/ngx-khiops-histogram/issues"
+  },
+  "homepage": "https://github.com/KhiopsML/ngx-khiops-histogram#readme",
   "peerDependencies": {
     "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0"
