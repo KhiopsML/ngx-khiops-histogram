@@ -21,7 +21,9 @@ jobs:
 
             - name: yarn install
               run: |
+                  yarn pack:lib
                   yarn install
+
 
             - name: yarn test
               env:

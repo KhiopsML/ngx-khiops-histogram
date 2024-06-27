@@ -26,7 +26,8 @@
     "watch:pack:lib": "npx nodemon --watch projects/ngx-khiops-histogram/src --exec \"npm run pack:lib\"",
     "dev": "concurrently \"npm run start\" \"npm run watch:lib\" \"npm run watch:pack:lib\"",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "setTag": "./scripts/tag.sh"
   },
   "private": true,
   "dependencies": {
