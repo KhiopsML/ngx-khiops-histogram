@@ -2,7 +2,7 @@
  * Public API Surface of ngx-khiops-histogram
  */
 
-// export * from './lib/components/ngx-khiops-histogram.service';
+export * from './lib/services/ngx-khiops-histogram.service';
 export * from './lib/components/histogram/ngx-khiops-histogram.component';
 export * from './lib/components/tooltip/ngx-khiops-histogram.tooltip.component';
 export * from './lib/ngx-khiops-histogram.module';

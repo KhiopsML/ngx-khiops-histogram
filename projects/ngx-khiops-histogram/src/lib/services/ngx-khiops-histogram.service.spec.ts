@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-
-import { NgxKhiopsHistogramService } from './ngx-khiops-histogram.service';
+import { HistogramService } from './ngx-khiops-histogram.service';
 
 describe('NgxKhiopsHistogramService', () => {
-  let service: NgxKhiopsHistogramService;
+  let service: HistogramService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NgxKhiopsHistogramService);
+    service = TestBed.inject(HistogramService);
   });
 
   it('should be created', () => {
