@@ -535,6 +535,11 @@ export class NgxKhiopsHistogramComponent {
       const x = barX + this.options.xPadding + this.options.xPadding / 2;
       const y = this.h - barH;
 
+      // Tooltip issue on histogram #189
+      if (barW < 1) {
+        barW = 1;
+      }
+
       // keep current coords to bind clicks and tooltip
       d.coords = {
         x: x,
