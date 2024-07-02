@@ -537,7 +537,7 @@ export class NgxKhiopsHistogramComponent {
 
       // Tooltip issue on histogram #189
       if (barW < 1) {
-        barW = 1;
+        barW = 1.5;
       }
 
       // keep current coords to bind clicks and tooltip
