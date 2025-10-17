@@ -1,54 +1,51 @@
-# ngx-khiops-histogram
+# 📊 ngx-khiops-histogram
 
-```ngx-khiops-histogram``` is an Angular Typescript component that allows you to display histograms of numerical values in linear and logarithmic form.
-This component is maintained and is integrated into the [Khiops Visualization](https://github.com/KhiopsML/khiops-visualization) tool.
+`ngx-khiops-histogram` is an Angular TypeScript component for displaying histograms of numerical values in both linear and logarithmic forms. This component is actively maintained and integrated into the [Khiops Visualization](https://github.com/KhiopsML/khiops-visualization) tool.
 
-## Why ?
+## ❓ Why use this component?
 
-If the linear representation in x and y is classic, as is the logarithmic representation in y, the logarithmic representation in x poses a problem for values ​​around zero and for negative interval values.
+While linear representation in x and y axes is standard, and logarithmic representation in y is common, logarithmic representation in x presents challenges for values near zero and for negative intervals.
 
-### Negative logarithmic values
+### ➖ Handling negative logarithmic values
 
-Negative logarithmic interval values ​​cannot be represented since Math.log10(-x) = NaN.
-In order to represent these values, ​​we will take their absolute values ​​which we will display on the negative axis of x: from -1 to -inf
+Negative logarithmic interval values cannot be represented directly since `Math.log10(-x) = NaN`. To display these values, their absolute values are shown on the negative x-axis: from -1 to -∞.
 
 ![image](https://github.com/KhiopsML/ngx-khiops-histogram/assets/13203455/11dfd7c4-3ecf-4a71-9439-5c498de78a23)
 
-### Values around 0
+### 🟰 Handling values around zero
 
-Values ​​around [-1; 1] are infinite so the representation should be infinitely large. To avoid this, we then arbitrarily assign a width of 1/10 of the width of the graph.
+Values around [-1; 1] are infinite, so the representation would be infinitely large. To avoid this, an arbitrary width of 1/10 of the graph is assigned to this region.
 
 ![image](https://github.com/KhiopsML/ngx-khiops-histogram/assets/13203455/ef64c77f-a640-46cf-8743-2024d0be5e90)
 
-If 0 is a bound, the arbitrary histogram in the middle is divided into two parts to represent the value <0 and the value >0
-
+If 0 is a boundary, the arbitrary histogram in the middle is split into two parts to represent values <0 and >0.
 
 ![image](https://github.com/KhiopsML/ngx-khiops-histogram/assets/13203455/ea69a9ba-19bc-4052-bd11-1a31df0c190f)
 
+## ⚙️ Installation
 
-## Installation
-
-```yarn add ngx-khiops-histogram```
-
-or
-
-```npm install ngx-khiops-histogram```
-
-## Usage
-
-Add wanted package to NgModule imports:
-
+```bash
+yarn add ngx-khiops-histogram
+# or
+npm install ngx-khiops-histogram
 ```
+
+## 🚀 Usage
+
+Add the package to your NgModule imports:
+
+```typescript
 import { NgxKhiopsHistogramModule } from 'ngx-khiops-histogram';
 
 @NgModule({
-...
-imports: [NgxKhiopsHistogramModule,...]
-...
+    ...
+    imports: [NgxKhiopsHistogramModule, ...]
+    ...
 })
 ```
 
 Add component to your page:
+
 ```
 <ngx-khiops-histogram
     [datas]="datas"
@@ -62,27 +59,49 @@ Add component to your page:
 
 ### Params
 
-| Property | Type | Default | Description |
-|--|--|--|--|
-| graphOptionX | HistogramType | HistogramType.XLIN | X axis scale |
-| graphOptionY| HistogramType | HistogramType.YLIN| Y axis scale | 
-| options| HistogramOptions| {<br>selectedBarColor: 'black',<br>gridColor: '#aaa',<br>xPadding: 40,<br>yPadding: 50,<br>minBarHeight: 4<br>} | Optional styles options |
-| datas| HistogramData| {<br>frequency: number,<br>partition: [number, number],<br>value: number,<br>logValue: number<br>} | Datas inputs |
+| Property     | Type             | Default              | Description            |
+| ------------ | ---------------- | -------------------- | ---------------------- |
+| graphOptionX | HistogramType    | `HistogramType.XLIN` | X axis scale           |
+| graphOptionY | HistogramType    | `HistogramType.YLIN` | Y axis scale           |
+| options      | HistogramOptions | See example below    | Optional style options |
+| datas        | HistogramData    | See example below    | Data inputs            |
 
+**Example for `options` default:**
+
+```typescript
+{
+    selectedBarColor: 'black',
+    gridColor: '#aaa',
+    xPadding: 40,
+    yPadding: 50,
+    minBarHeight: 4
+}
+```
+
+**Example for `datas` default:**
+
+```typescript
+{
+    frequency: number,
+    partition: [number, number],
+    value: number,
+    logValue: number
+}
+```
 
 ### Outputs
 
-| Property | Event type | Description|
-|--|--|--|
-| selectedItemChanged | EventEmitter(Number) | Emit new index value when a bar is clicked|
+| Property            | Event type           | Description                                |
+| ------------------- | -------------------- | ------------------------------------------ |
+| selectedItemChanged | EventEmitter(Number) | Emit new index value when a bar is clicked |
 
-## License
-This software is distributed under the BSD 3-Clause-clear License, the text of which is available at
-https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the [LICENSE.md](./LICENSE.md) for more
-details.
+## 📄 License
 
-## Credits
-The ngx-khiops-histogram library is currently developed at [Orange Innovation][o-innov] by the Khiops
-Team: khiops.team@orange.com.
+This software is distributed under the BSD 3-Clause-clear License, the text of which is available at  
+[BSD-3-Clause-Clear](https://spdx.org/licenses/BSD-3-Clause-Clear.html) or see the [LICENSE.md](./LICENSE.md) for more details.
+
+## 🙏 Credits
+
+The ngx-khiops-histogram library is currently developed at [Orange Innovation][o-innov] by the Khiops Team: khiops.team@orange.com.
 
 [o-innov]: https://hellofuture.orange.com/en/
