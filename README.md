@@ -98,7 +98,7 @@ Add component to your page:
 ## 📄 License
 
 This software is distributed under the BSD 3-Clause-clear License, the text of which is available at  
-[BSD-3-Clause-Clear](https://spdx.org/licenses/BSD-3-Clause-Clear.html) or see the [LICENSE.md](./LICENSE.md) for more details.
+[BSD-3-Clause-Clear](https://spdx.org/licenses/BSD-3-Clause-Clear.html) or see the [LICENSE.md](./LICENSE) for more details.
 
 ## 🙏 Credits
 
