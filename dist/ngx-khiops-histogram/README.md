@@ -1,24 +1,88 @@
-# NgxKhiopsHistogram
+# ngx-khiops-histogram
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.0.
+```ngx-khiops-histogram``` is an Angular Typescript component that allows you to display histograms of numerical values in linear and logarithmic form.
+This component is maintained and is integrated into the [Khiops Visualization](https://github.com/KhiopsML/khiops-visualization) tool.
 
-## Code scaffolding
+## Why ?
 
-Run `ng generate component component-name --project ngx-khiops-histogram` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-khiops-histogram`.
-> Note: Don't forget to add `--project ngx-khiops-histogram` or else it will be added to the default project in your `angular.json` file. 
+If the linear representation in x and y is classic, as is the logarithmic representation in y, the logarithmic representation in x poses a problem for values ​​around zero and for negative interval values.
 
-## Build
+### Negative logarithmic values
 
-Run `ng build ngx-khiops-histogram` to build the project. The build artifacts will be stored in the `dist/` directory.
+Negative logarithmic interval values ​​cannot be represented since Math.log10(-x) = NaN.
+In order to represent these values, ​​we will take their absolute values ​​which we will display on the negative axis of x: from -1 to -inf
 
-## Publishing
+![image](https://github.com/KhiopsML/ngx-khiops-histogram/assets/13203455/11dfd7c4-3ecf-4a71-9439-5c498de78a23)
 
-After building your library with `ng build ngx-khiops-histogram`, go to the dist folder `cd dist/ngx-khiops-histogram` and run `npm publish`.
+### Values around 0
 
-## Running unit tests
+Values ​​around [-1; 1] are infinite so the representation should be infinitely large. To avoid this, we then arbitrarily assign a width of 1/10 of the width of the graph.
 
-Run `ng test ngx-khiops-histogram` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![image](https://github.com/KhiopsML/ngx-khiops-histogram/assets/13203455/ef64c77f-a640-46cf-8743-2024d0be5e90)
 
-## Further help
+If 0 is a bound, the arbitrary histogram in the middle is divided into two parts to represent the value <0 and the value >0
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+![image](https://github.com/KhiopsML/ngx-khiops-histogram/assets/13203455/ea69a9ba-19bc-4052-bd11-1a31df0c190f)
+
+
+## Installation
+
+```yarn add ngx-khiops-histogram```
+
+or
+
+```npm install ngx-khiops-histogram```
+
+## Usage
+
+Add wanted package to NgModule imports:
+
+```
+import { NgxKhiopsHistogramModule } from 'ngx-khiops-histogram';
+
+@NgModule({
+...
+imports: [NgxKhiopsHistogramModule,...]
+...
+})
+```
+
+Add component to your page:
+```
+<ngx-khiops-histogram
+    [datas]="datas"
+    [datasLabels]="datasLabels"
+    [options]="options"
+    [graphOptionX]="graphOptionX"
+    [graphOptionY]="graphOptionY"
+    (selectedItemChanged)="selectedItemChanged($event)">
+</ngx-khiops-histogram>
+```
+
+### Params
+
+| Property | Type | Default | Description |
+|--|--|--|--|
+| graphOptionX | HistogramType | HistogramType.XLIN | X axis scale |
+| graphOptionY| HistogramType | HistogramType.YLIN| Y axis scale | 
+| options| HistogramOptions| {<br>selectedBarColor: 'black',<br>gridColor: '#aaa',<br>xPadding: 40,<br>yPadding: 50,<br>minBarHeight: 4<br>} | Optional styles options |
+| datas| HistogramData| {<br>frequency: number,<br>partition: [number, number],<br>value: number,<br>logValue: number<br>} | Datas inputs |
+
+
+### Outputs
+
+| Property | Event type | Description|
+|--|--|--|
+| selectedItemChanged | EventEmitter(Number) | Emit new index value when a bar is clicked|
+
+## License
+This software is distributed under the BSD 3-Clause-clear License, the text of which is available at
+https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the [LICENSE.md](./LICENSE.md) for more
+details.
+
+## Credits
+The ngx-khiops-histogram library is currently developed at [Orange Innovation][o-innov] by the Khiops
+Team: khiops.team@orange.com.
+
+[o-innov]: https://hellofuture.orange.com/en/

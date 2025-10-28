@@ -95,6 +95,14 @@ Add component to your page:
 | ------------------- | -------------------- | ------------------------------------------ |
 | selectedItemChanged | EventEmitter(Number) | Emit new index value when a bar is clicked |
 
+## Development
+
+```bash
+yarn build-lib
+# and
+yarn start
+```
+
 ## 📄 License
 
 This software is distributed under the BSD 3-Clause-clear License, the text of which is available at  

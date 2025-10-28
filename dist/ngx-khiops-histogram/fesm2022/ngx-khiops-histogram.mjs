@@ -1,8 +1,8 @@
 import * as i0 from '@angular/core';
-import { Injectable, Component, Input, EventEmitter, ViewChild, Output, NgModule } from '@angular/core';
+import { Injectable, Input, Component, EventEmitter, Output, ViewChild, NgModule } from '@angular/core';
+import * as d3 from 'd3';
 import { format } from 'mathjs';
 import { Subject, debounceTime } from 'rxjs';
-import * as d3 from 'd3';
 import * as i2 from 'angular-resize-event';
 import { AngularResizeEventModule } from 'angular-resize-event';
 import * as i1 from '@angular/common';
@@ -111,10 +111,10 @@ class HistogramUIService {
         const b = parseInt(c.slice(5, 7), 16);
         return `rgba(${r}, ${g}, ${b}, ${alpha})`;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.0.4", ngImport: i0, type: HistogramUIService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "18.0.4", ngImport: i0, type: HistogramUIService, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: HistogramUIService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: HistogramUIService, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.4", ngImport: i0, type: HistogramUIService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: HistogramUIService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root',
@@ -226,8 +226,14 @@ class HistogramService {
     }
     getLogRangeY(datas) {
         const dataValues = datas.map((e) => e.logValue).filter((e) => e !== 0);
+        // Numerical histogram Ylog broken when only one data #194
         this.rangeYLog.max = Math.max(...dataValues);
-        this.rangeYLog.min = Math.min(...dataValues);
+        if (dataValues.length === 1) {
+            this.rangeYLog.min = 0;
+        }
+        else {
+            this.rangeYLog.min = Math.min(...dataValues);
+        }
         return this.rangeYLog;
     }
     getLinRatioY(h, padding = 0) {
@@ -257,10 +263,10 @@ class HistogramService {
         });
         return bars;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.0.4", ngImport: i0, type: HistogramService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "18.0.4", ngImport: i0, type: HistogramService, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: HistogramService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: HistogramService, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.4", ngImport: i0, type: HistogramService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: HistogramService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root',
@@ -292,8 +298,8 @@ class NgxKhiopsHistogramTooltipComponent {
         }
         return left;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.0.4", ngImport: i0, type: NgxKhiopsHistogramTooltipComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "18.0.4", type: NgxKhiopsHistogramTooltipComponent, selector: "ngx-khiops-histogram-tooltip", inputs: { text: "text", posX: "posX", posY: "posY", canvasW: "canvasW", display: "display" }, ngImport: i0, template: `
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: NgxKhiopsHistogramTooltipComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "20.3.7", type: NgxKhiopsHistogramTooltipComponent, isStandalone: false, selector: "ngx-khiops-histogram-tooltip", inputs: { text: "text", posX: "posX", posY: "posY", canvasW: "canvasW", display: "display" }, ngImport: i0, template: `
     <div
       [ngStyle]="{
         'left.px': this.computeXPos(),
@@ -306,7 +312,7 @@ class NgxKhiopsHistogramTooltipComponent {
     </div>
   `, isInline: true, styles: [".tooltip{font-family:verdana;position:absolute;background-color:#000c;color:#fff;font-weight:200;z-index:2;padding:0 10px;border-radius:5px;font-size:.8rem;pointer-events:none}\n"], dependencies: [{ kind: "directive", type: i1.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.4", ngImport: i0, type: NgxKhiopsHistogramTooltipComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: NgxKhiopsHistogramTooltipComponent, decorators: [{
             type: Component,
             args: [{ selector: 'ngx-khiops-histogram-tooltip', template: `
     <div
@@ -319,7 +325,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.4", ngImpor
     >
       <p [innerHTML]="text"></p>
     </div>
-  `, styles: [".tooltip{font-family:verdana;position:absolute;background-color:#000c;color:#fff;font-weight:200;z-index:2;padding:0 10px;border-radius:5px;font-size:.8rem;pointer-events:none}\n"] }]
+  `, standalone: false, styles: [".tooltip{font-family:verdana;position:absolute;background-color:#000c;color:#fff;font-weight:200;z-index:2;padding:0 10px;border-radius:5px;font-size:.8rem;pointer-events:none}\n"] }]
         }], ctorParameters: () => [], propDecorators: { text: [{
                 type: Input
             }], posX: [{
@@ -658,6 +664,10 @@ class NgxKhiopsHistogramComponent {
             }
             const x = barX + this.options.xPadding + this.options.xPadding / 2;
             const y = this.h - barH;
+            // Tooltip issue on histogram #189
+            if (barW < 1) {
+                barW = 1.5;
+            }
             // keep current coords to bind clicks and tooltip
             d.coords = {
                 x: x,
@@ -783,12 +793,12 @@ class NgxKhiopsHistogramComponent {
             .selectAll('line')
             .style('stroke', this.options.gridColor); // Set the grid color
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.0.4", ngImport: i0, type: NgxKhiopsHistogramComponent, deps: [{ token: HistogramService }, { token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "18.0.4", type: NgxKhiopsHistogramComponent, selector: "ngx-khiops-histogram", inputs: { datas: "datas", datasLabels: "datasLabels", selectedItem: "selectedItem", graphOptionX: "graphOptionX", graphOptionY: "graphOptionY", options: "options" }, outputs: { selectedItemChanged: "selectedItemChanged" }, viewQueries: [{ propertyName: "chart", first: true, predicate: ["chart"], descendants: true }], usesOnChanges: true, ngImport: i0, template: "<div class=\"app-histogram\" fxFlexFill (resized)=\"onResized($event)\">\r\n  <canvas id=\"histogram-canvas\" fxFlex> </canvas>\r\n  <canvas id=\"histogram-canvas-hover\" fxFlex> </canvas>\r\n  <canvas id=\"histogram-canvas-selected\" fxFlex> </canvas>\r\n  <div #chart id=\"histogram-chart\"></div>\r\n  <ngx-khiops-histogram-tooltip\r\n    [text]=\"tooltipText\"\r\n    [canvasW]=\"w\"\r\n    [posX]=\"tooltipPosX\"\r\n    [posY]=\"tooltipPosY\"\r\n    [display]=\"tooltipDisplay\"\r\n  >\r\n  </ngx-khiops-histogram-tooltip>\r\n</div>\r\n", styles: [".app-histogram{position:absolute;top:0;width:100%;margin:0;height:100%;overflow:hidden}.app-histogram #histogram-canvas,.app-histogram #histogram-canvas-hover,.app-histogram #histogram-canvas-selected{z-index:2;position:absolute}.app-histogram #histogram-chart{top:0;position:absolute;width:100%;height:100%;margin:0;padding:0}.app-histogram #histogram-chart ::ng-deep .axis-grid .domain{stroke:none}.app-histogram #histogram-chart ::ng-deep .axis-grid .tick line{stroke-dasharray:5}.app-histogram #histogram-chart ::ng-deep .axis-grid .tick text{fill:#999}::ng-deep .tooltip-container .tooltip{display:none;position:absolute;top:0;left:0;padding:10px;border-radius:5px;font-family:Arial,Helvetica,sans-serif;font-size:13px;background-color:#000000b3;color:#fff}\n"], dependencies: [{ kind: "directive", type: i2.ResizedDirective, selector: "[resized]", outputs: ["resized"] }, { kind: "component", type: NgxKhiopsHistogramTooltipComponent, selector: "ngx-khiops-histogram-tooltip", inputs: ["text", "posX", "posY", "canvasW", "display"] }] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: NgxKhiopsHistogramComponent, deps: [{ token: HistogramService }, { token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "20.3.7", type: NgxKhiopsHistogramComponent, isStandalone: false, selector: "ngx-khiops-histogram", inputs: { datas: "datas", datasLabels: "datasLabels", selectedItem: "selectedItem", graphOptionX: "graphOptionX", graphOptionY: "graphOptionY", options: "options" }, outputs: { selectedItemChanged: "selectedItemChanged" }, viewQueries: [{ propertyName: "chart", first: true, predicate: ["chart"], descendants: true }], usesOnChanges: true, ngImport: i0, template: "<div class=\"app-histogram\" fxFlexFill (resized)=\"onResized($event)\">\r\n  <canvas id=\"histogram-canvas\" fxFlex> </canvas>\r\n  <canvas id=\"histogram-canvas-hover\" fxFlex> </canvas>\r\n  <canvas id=\"histogram-canvas-selected\" fxFlex> </canvas>\r\n  <div #chart id=\"histogram-chart\"></div>\r\n  <ngx-khiops-histogram-tooltip\r\n    [text]=\"tooltipText\"\r\n    [canvasW]=\"w\"\r\n    [posX]=\"tooltipPosX\"\r\n    [posY]=\"tooltipPosY\"\r\n    [display]=\"tooltipDisplay\"\r\n  >\r\n  </ngx-khiops-histogram-tooltip>\r\n</div>\r\n", styles: [".app-histogram{position:absolute;top:0;width:100%;margin:0;height:100%;overflow:hidden}.app-histogram #histogram-canvas,.app-histogram #histogram-canvas-hover,.app-histogram #histogram-canvas-selected{z-index:2;position:absolute}.app-histogram #histogram-chart{top:0;position:absolute;width:100%;height:100%;margin:0;padding:0}.app-histogram #histogram-chart ::ng-deep .axis-grid .tick:nth-of-type(1) line{display:none}.app-histogram #histogram-chart ::ng-deep .axis-grid .domain{stroke:none}.app-histogram #histogram-chart ::ng-deep .axis-grid .tick line{stroke-dasharray:5}.app-histogram #histogram-chart ::ng-deep .axis-grid .tick text{fill:#999}::ng-deep .tooltip-container .tooltip{display:none;position:absolute;top:0;left:0;padding:10px;border-radius:5px;font-family:Arial,Helvetica,sans-serif;font-size:13px;background-color:#000000b3;color:#fff}\n"], dependencies: [{ kind: "directive", type: i2.ResizedDirective, selector: "[resized]", outputs: ["resized"] }, { kind: "component", type: NgxKhiopsHistogramTooltipComponent, selector: "ngx-khiops-histogram-tooltip", inputs: ["text", "posX", "posY", "canvasW", "display"] }] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.4", ngImport: i0, type: NgxKhiopsHistogramComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: NgxKhiopsHistogramComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'ngx-khiops-histogram', template: "<div class=\"app-histogram\" fxFlexFill (resized)=\"onResized($event)\">\r\n  <canvas id=\"histogram-canvas\" fxFlex> </canvas>\r\n  <canvas id=\"histogram-canvas-hover\" fxFlex> </canvas>\r\n  <canvas id=\"histogram-canvas-selected\" fxFlex> </canvas>\r\n  <div #chart id=\"histogram-chart\"></div>\r\n  <ngx-khiops-histogram-tooltip\r\n    [text]=\"tooltipText\"\r\n    [canvasW]=\"w\"\r\n    [posX]=\"tooltipPosX\"\r\n    [posY]=\"tooltipPosY\"\r\n    [display]=\"tooltipDisplay\"\r\n  >\r\n  </ngx-khiops-histogram-tooltip>\r\n</div>\r\n", styles: [".app-histogram{position:absolute;top:0;width:100%;margin:0;height:100%;overflow:hidden}.app-histogram #histogram-canvas,.app-histogram #histogram-canvas-hover,.app-histogram #histogram-canvas-selected{z-index:2;position:absolute}.app-histogram #histogram-chart{top:0;position:absolute;width:100%;height:100%;margin:0;padding:0}.app-histogram #histogram-chart ::ng-deep .axis-grid .domain{stroke:none}.app-histogram #histogram-chart ::ng-deep .axis-grid .tick line{stroke-dasharray:5}.app-histogram #histogram-chart ::ng-deep .axis-grid .tick text{fill:#999}::ng-deep .tooltip-container .tooltip{display:none;position:absolute;top:0;left:0;padding:10px;border-radius:5px;font-family:Arial,Helvetica,sans-serif;font-size:13px;background-color:#000000b3;color:#fff}\n"] }]
+            args: [{ selector: 'ngx-khiops-histogram', standalone: false, template: "<div class=\"app-histogram\" fxFlexFill (resized)=\"onResized($event)\">\r\n  <canvas id=\"histogram-canvas\" fxFlex> </canvas>\r\n  <canvas id=\"histogram-canvas-hover\" fxFlex> </canvas>\r\n  <canvas id=\"histogram-canvas-selected\" fxFlex> </canvas>\r\n  <div #chart id=\"histogram-chart\"></div>\r\n  <ngx-khiops-histogram-tooltip\r\n    [text]=\"tooltipText\"\r\n    [canvasW]=\"w\"\r\n    [posX]=\"tooltipPosX\"\r\n    [posY]=\"tooltipPosY\"\r\n    [display]=\"tooltipDisplay\"\r\n  >\r\n  </ngx-khiops-histogram-tooltip>\r\n</div>\r\n", styles: [".app-histogram{position:absolute;top:0;width:100%;margin:0;height:100%;overflow:hidden}.app-histogram #histogram-canvas,.app-histogram #histogram-canvas-hover,.app-histogram #histogram-canvas-selected{z-index:2;position:absolute}.app-histogram #histogram-chart{top:0;position:absolute;width:100%;height:100%;margin:0;padding:0}.app-histogram #histogram-chart ::ng-deep .axis-grid .tick:nth-of-type(1) line{display:none}.app-histogram #histogram-chart ::ng-deep .axis-grid .domain{stroke:none}.app-histogram #histogram-chart ::ng-deep .axis-grid .tick line{stroke-dasharray:5}.app-histogram #histogram-chart ::ng-deep .axis-grid .tick text{fill:#999}::ng-deep .tooltip-container .tooltip{display:none;position:absolute;top:0;left:0;padding:10px;border-radius:5px;font-family:Arial,Helvetica,sans-serif;font-size:13px;background-color:#000000b3;color:#fff}\n"] }]
         }], ctorParameters: () => [{ type: HistogramService }, { type: i0.ElementRef }, { type: i0.Renderer2 }], propDecorators: { chart: [{
                 type: ViewChild,
                 args: ['chart', { static: false }]
@@ -809,12 +819,12 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.4", ngImpor
             }] } });
 
 class NgxKhiopsHistogramModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.0.4", ngImport: i0, type: NgxKhiopsHistogramModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.0.4", ngImport: i0, type: NgxKhiopsHistogramModule, declarations: [NgxKhiopsHistogramComponent,
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: NgxKhiopsHistogramModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.7", ngImport: i0, type: NgxKhiopsHistogramModule, declarations: [NgxKhiopsHistogramComponent,
             NgxKhiopsHistogramTooltipComponent], imports: [CommonModule, AngularResizeEventModule], exports: [NgxKhiopsHistogramComponent, NgxKhiopsHistogramTooltipComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "18.0.4", ngImport: i0, type: NgxKhiopsHistogramModule, imports: [CommonModule, AngularResizeEventModule] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: NgxKhiopsHistogramModule, imports: [CommonModule, AngularResizeEventModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.4", ngImport: i0, type: NgxKhiopsHistogramModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.7", ngImport: i0, type: NgxKhiopsHistogramModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, AngularResizeEventModule],
@@ -829,11 +839,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.4", ngImpor
 /*
  * Public API Surface of ngx-khiops-histogram
  */
-// export * from './lib/components/ngx-khiops-histogram.service';
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { HistogramType, NgxKhiopsHistogramComponent, NgxKhiopsHistogramModule, NgxKhiopsHistogramTooltipComponent };
+export { HistogramService, HistogramType, NgxKhiopsHistogramComponent, NgxKhiopsHistogramModule, NgxKhiopsHistogramTooltipComponent };
 //# sourceMappingURL=ngx-khiops-histogram.mjs.map

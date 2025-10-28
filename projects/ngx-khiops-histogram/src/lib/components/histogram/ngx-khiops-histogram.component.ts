@@ -28,6 +28,7 @@ import { HistogramUIService } from '../../services/ngx-khiops-histogram.ui.servi
   selector: 'ngx-khiops-histogram',
   templateUrl: './ngx-khiops-histogram.component.html',
   styleUrl: './ngx-khiops-histogram.component.scss',
+  standalone: false,
 })
 export class NgxKhiopsHistogramComponent {
   @ViewChild('chart', { static: false })
