@@ -25,6 +25,8 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update dependencies
         run: |
@@ -39,6 +41,8 @@ jobs:
           # Actually upgrade all resolutions in yarn.lock (not just re-read package.json)
           # yarn upgrade also deduplicates automatically in Yarn Classic
           yarn upgrade
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Pull Request
         id: create-pr
