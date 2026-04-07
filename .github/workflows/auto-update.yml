@@ -28,14 +28,11 @@ jobs:
           npm install -g npm-check-updates
 
           # Update to latest minor+patch (non-breaking)
+          # This covers both minor and patch updates in one command
           ncu -u --target minor
 
-          # Also apply patch-only updates for packages already at their major
-          ncu -u --target patch
-
-          # Actually upgrade all resolutions in yarn.lock (not just re-read package.json)
-          # yarn upgrade also deduplicates automatically in Yarn Classic
-          yarn install
+          # Install dependencies and update yarn.lock
+          yarn install --frozen-lockfile=false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
