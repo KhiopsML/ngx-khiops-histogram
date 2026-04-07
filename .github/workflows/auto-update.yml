@@ -32,7 +32,7 @@ jobs:
           ncu -u --target minor
 
           # Install dependencies and update yarn.lock
-          yarn install --frozen-lockfile=false
+          yarn install
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
