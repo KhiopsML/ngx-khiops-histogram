@@ -23,11 +23,6 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install dependencies
-        run: yarn install
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Update dependencies
         run: |
           npm install -g npm-check-updates
@@ -40,7 +35,7 @@ jobs:
 
           # Actually upgrade all resolutions in yarn.lock (not just re-read package.json)
           # yarn upgrade also deduplicates automatically in Yarn Classic
-          yarn upgrade
+          yarn install
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
