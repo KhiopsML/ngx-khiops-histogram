@@ -322,10 +322,10 @@
     yargs "18.0.0"
     zod "4.3.6"
 
-"@angular/common@^22.2.0":
-  version "22.2.0"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-22.2.0.tgz#a1c2563bea45170a8c813624b55bb39e55674d3a"
-  integrity sha512-BUKkncKwnaEcF/qatBOpzSIx2NthFZLYlTcE7iHwwsw+XQrwB9hU8Ca/l5HqaTJiMg0D8MjI/SWHnD4LFtNN+w==
+"@angular/common@^22.2.2":
+  version "22.2.2"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-22.2.2.tgz#21a183fc1f13cc0ee6b71dd86e745e7bb9b0c647"
+  integrity sha512-d+mbF1UQLpsoJiC7h4pl58G7XeLHKU8DdLbq9u7TuOK0AnC1t2rrphi8M8WqUrZ+bfmFKCU4i1i4+vOF1N5GtA==
   dependencies:
     tslib "^2.3.0"
 
@@ -6637,14 +6637,7 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-piscina@5.3.2:
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/piscina/-/piscina-5.3.2.tgz#ea9376457c47f54d01ecd7556eed94c49160f400"
-  integrity sha512-vv7l/mM7B9WgrhDaudIqv1x6v4LOBRYYmpWGdWushhpbCmVHp11sUB2v4hj1CAeTGXVxuZFz6xOU1RalAiPKfQ==
-  optionalDependencies:
-    "@napi-rs/nice" "^1.0.4"
-
-piscina@^5.0.0:
+piscina@5.3.2, piscina@^5.0.0:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/piscina/-/piscina-5.3.2.tgz#ea9376457c47f54d01ecd7556eed94c49160f400"
   integrity sha512-vv7l/mM7B9WgrhDaudIqv1x6v4LOBRYYmpWGdWushhpbCmVHp11sUB2v4hj1CAeTGXVxuZFz6xOU1RalAiPKfQ==
