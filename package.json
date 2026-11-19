@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@angular/animations": "^20.3.35",
-    "@angular/common": "^22.2.6",
+    "@angular/common": "^22.3.0",
     "@angular/compiler": "^20.3.35",
     "@angular/core": "^20.3.35",
     "@angular/forms": "^20.3.35",
